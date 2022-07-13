@@ -1,10 +1,14 @@
 <template>
   <v-app>
     <v-container>
-      <v-card>
         <v-container>
+          <v-text-field
+            v-model="search"
+            label="Pesquisar"
+            placeholder="Bulbassaur" outlined
+          ></v-text-field>
           <v-row>
-            <v-col cols="3" v-for="pokemon in pokemons.slice(0,100)" :key="pokemon.name">
+            <v-col cols="3" v-for="pokemon in filtered_pokemons || filtered_species" :key="pokemon.name">
               <v-card>
                 <v-container>
                   <v-row class="mx-0 d-flex justify-center">
@@ -16,7 +20,6 @@
             </v-col>
           </v-row>
         </v-container>
-      </v-card>
     </v-container>
   </v-app>
 </template>
@@ -32,6 +35,7 @@ export default {
   data() {
     return {
       pokemons: [],
+      search: "",
     };
   },
 
@@ -50,16 +54,25 @@ export default {
       return pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     },
   },
+  computed:{
+    filtered_pokemons() {
+      return this.pokemons.filter((item) => {
+        return item.name.includes(this.search);
+      });
+    },
+     filtered_species() {
+      return this.pokemons.filter((item) => {
+        return item.species.includes(this.search);
+      });
+    },
+  },
 };
 </script>
 
 <style>
 #app {
-  background: linear-gradient(
-      to bottom right,
-      rgba(10, 10, 10, 1),
-      rgba(12, 39, 63, 1)
-    )
+background: rgb(12,39,63);
+background: radial-gradient(circle, rgba(12,39,63,1) 49%, rgba(10,10,10,1) 100%)
     no-repeat center center fixed !important;
   -webkit-background-size: cover;
   -moz-background-size: cover;
