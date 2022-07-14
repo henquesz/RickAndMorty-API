@@ -51,7 +51,10 @@
             <h1>
               {{ get_name(selected_pokemon)}}
             </h1>
-            <span>Altura:{{selected_pokemon.height}}</span>
+           <v-chip label v-for="type in selected_pokemon.types" :key="type.slot"> <v-divider class="my-4"></v-divider>{{type.type.name}} </v-chip>
+           <v-divider class="my-4"></v-divider>
+            <v-chip label> Altura: {{selected_pokemon.height * 2.54}}cm</v-chip>
+            <v-chip label class="ml-2"> Peso: {{ (selected_pokemon.weight * 0.45359237).toFixed(0)}}Kg</v-chip>
           </v-col>
         </v-row>
           {{selected_pokemon}}
