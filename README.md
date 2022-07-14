@@ -37,6 +37,7 @@ Clone o repósitorio através da URL https://github.com/henquesz/Pokedex.git.
 ## Observações finais importantes
 
 - A conexão feita na base desse projeto está ligada direta a pokeapi original, pois para utilizar a minha própria api, eu teria que hospeda-la, a criação da minha api para adentrar os requisitos do processo está disponivel em outro repositório no meu perfil do github.
+- [Link para o projeto](https://github.com/henquesz/ApiRestSX)
 
 
 ## Referência
