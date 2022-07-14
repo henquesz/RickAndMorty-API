@@ -1,6 +1,17 @@
 <template>
   <v-app>
     <v-container>
+      <v-row>
+        <v-container>
+          <v-img
+            :src="require('../src/assets/pokedex.png')"
+            class=""
+            contain
+            height="300"
+          />
+          <!-- <h1 color="white" class="mx-5">Procure pelos teus pokemons favoritos abaixo.</h1> -->
+        </v-container>
+      </v-row>
       <v-container>
         <v-text-field
           dark
@@ -8,11 +19,11 @@
           label="Pesquisar"
           placeholder="Bulbassaur"
           outlined
-          color="success"
+          color="red"
         ></v-text-field>
         <v-row>
           <v-col
-            cols="3"
+            cols="2"
             v-for="pokemon in filtered_pokemons || filtered_species"
             :key="pokemon.name"
           >
@@ -36,11 +47,11 @@
       </v-container>
     </v-container>
 
-    <v-dialog v-model="show_dialog" width="700">
+    <v-dialog v-model="show_dialog" width="500">
       <v-card v-if="selected_pokemon" class="px-4">
         <v-container>
           <v-row class="d-flex align-center">
-            <v-col cols="4">
+            <v-col cols="5">
               <img
                 :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selected_pokemon.id}.png`"
                 :alt="selected_pokemon.name"
@@ -80,23 +91,32 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in filter_moves(selected_pokemon)" :key="item.move.name">
-                  <td>{{ get_move_level(item)}}</td>
+                <tr
+                  v-for="item in filter_moves(selected_pokemon)"
+                  :key="item.move.name"
+                >
+                  <td>{{ get_move_level(item) }}</td>
                   <td>{{ item.move.name }}</td>
                 </tr>
               </tbody>
             </template>
           </v-simple-table>
-          
         </v-container>
       </v-card>
     </v-dialog>
-     <v-pagination
-      v-model="page"
-      :length="4"
-      prev-icon="mdi-menu-left"
-      next-icon="mdi-menu-right"
-    ></v-pagination>
+     <v-container>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-container class="max-width">
+            <v-pagination
+              v-model="page"
+              class="my-4"
+              :length="15"
+            ></v-pagination>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-container>  
   </v-app>
 </template>
 
@@ -107,7 +127,8 @@ import axios from "axios";
 export default {
   name: "App",
 
-  components: {},
+  components: {
+  },
 
   data() {
     return {
@@ -120,7 +141,7 @@ export default {
 
   mounted() {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=151")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=1000")
       .then((response) => {
         this.pokemons = response.data.results;
       });
@@ -138,7 +159,7 @@ export default {
         this.show_dialog = !this.show_dialog;
       });
     },
-   get_move_level(move) {
+    get_move_level(move) {
       for (let version of move.version_group_details) {
         if (
           version.version_group.name == "sword-shield" &&
@@ -172,7 +193,7 @@ export default {
     },
     filtered_species() {
       return this.pokemons.filter((item) => {
-        return item.species.includes(this.search);
+        return item.type.includes(this.search);
       });
     },
   },
