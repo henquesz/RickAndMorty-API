@@ -23,7 +23,7 @@
         ></v-text-field>
         <v-row>
           <v-col
-            cols="2"
+            cols="3"
             v-for="pokemon in filtered_pokemons || filtered_species"
             :key="pokemon.name"
           >
@@ -98,6 +98,7 @@
                   <td>{{ get_move_level(item) }}</td>
                   <td>{{ item.move.name }}</td>
                 </tr>
+
               </tbody>
             </template>
           </v-simple-table>
@@ -141,6 +142,8 @@ export default {
 
   mounted() {
     axios
+
+      //Local de url para substituir por rota da ApiRest desenvolvida. (https://github.com/henquesz/ApiRestSX)
       .get("https://pokeapi.co/api/v2/pokemon?limit=1000")
       .then((response) => {
         this.pokemons = response.data.results;
