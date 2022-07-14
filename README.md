@@ -57,3 +57,7 @@ Clone o repósitorio através da URL https://github.com/henquesz/Pokedex.git.
 #### Para quaisquer dúvidas, entre em contato comigo através do linkedIn.
 
 https://www.linkedin.com/in/vinicius-henques-5a843a1b9/
+
+## Link da hospedagem da Pokedex
+
+https://pokedex-blush-sigma.vercel.app
