@@ -7,6 +7,7 @@ Neste projeto, você irá encontrar uma pokedex desenvolvida em vue e vuetify, o
 ## Screenshots
 
 ![App Screenshot](https://i.pinimg.com/564x/b8/5b/c1/b85bc1ec114326066450ca7be22ffb5c.jpg)
+![App Screenshot](https://i.pinimg.com/564x/d3/37/31/d3373121f2240bc1e5f6f8deb8a1ec62.jpg)
 
 
 ## Instalação
