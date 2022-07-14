@@ -39,7 +39,7 @@
                   />
                 </v-row>
                 <h2 class="text-center">{{ get_name(pokemon) }}</h2>
-                <h3 class="text-center">Id: {{ get_id(pokemon) }}</h3>
+                <h3 class="text-center">ID: {{ get_id(pokemon) }}</h3>
               </v-container>
             </v-card>
           </v-col>
@@ -142,7 +142,6 @@ export default {
 
   mounted() {
     axios
-
       //Local de url para substituir por rota da ApiRest desenvolvida. (https://github.com/henquesz/ApiRestSX)
       .get("https://pokeapi.co/api/v2/pokemon?limit=1000")
       .then((response) => {
@@ -218,5 +217,6 @@ export default {
   background-size: cover !important;
   background-position: center;
   min-height: 100vh;
+  
 }
 </style>
